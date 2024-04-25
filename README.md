@@ -1,4 +1,4 @@
-# Docker-compose script to set up the local Gitlab instance (with blackjack and hookers)
+# Docker-compose Script to Set Up Your Own Gitlab Instance (with Blackjack and Hookers)
 
 The `docker-compose` file was generaged by [Llama2 Chatbot](https://www.llama2.ai/).
 
