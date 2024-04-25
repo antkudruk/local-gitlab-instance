@@ -1,0 +1,4 @@
+data/**
+gitlab/**
+postgres/**
+redis/**

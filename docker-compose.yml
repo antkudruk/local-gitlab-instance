@@ -1,0 +1,32 @@
+version: '3'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    restart: always
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:3000'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+      GITLAB_ROOT_PASSWORD: ${GITLAB_ROOT_PASSWORD}
+      GITLAB_ROOT_EMAIL: myemail@example.com
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    volumes:
+      - ./gitlab/config:/etc/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/data:/var/opt/gitlab
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: gitlab
+      POSTGRES_PASSWORD: gitlab
+      POSTGRES_DB: gitlabhq_production
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./redis/data:/data
